@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- sử dụng công nghệ mới  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap" rel="stylesheet">
+    <!-- main css  -->
+    <link rel="stylesheet" href="main.css">
+    <title>Quy hoạch động Bitmask</title>
+</head>
+
+<body>
+    <!-- overlay  -->
+    <section id="overlay">
+    </section>
+    <!-- header  -->
+    <header>
+        <div class="container">
+            <nav class="hhpk">
+                <!-- logo  -->
+                <div class="hhpk__logo">
+                    <img src="./IMG/Logo.png" alt="website logo">
+                </div>
+                <!-- links  -->
+                <ul class="hhpk__links">
+                    <li class="hhpk__link"><a href="#home">Home</a></li>
+                    <li class="hhpk__link"><a href="#LT">Khái quát</a></li>
+                    <li class="hhpk__link"><a href="#BT">Bài Tập</a></li>
+                    <li class="hhpk__link"><a href="#Đăng Nhập">Đăng Nhập</a></li>
+                    <!-- shilf alt down narrow duplicate 3 lan  -->
+                    <a href="#footer"><button class="hhpk__btn">Liên hệ</button></a>
+                </ul>
+                <!-- menu button  -->
+                <div class="hhpk__icons">
+                    <div class="hhpk__icon"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="content">
+            <h3>Dynamic programming</h3>
+            <p>Bitmask</p>
+            <p1>Welcome to our website</p1>
+        </div>
+
+
+    </section>
+
+    <!-- li thuyet  -->
+    <section class="LT" id="LT">
+        <div class="container">
+            <div class="content">
+                <!-- lithuyet -->
+                <h1>Lí Thuyết</h1>
+                <h2>Kiến thức cần biết</h2>
+                <div class="item__full">
+                    <div class="items">
+                        <a href="https://wiki.vnoi.info/translate/topcoder/fun-with-bits"><img src="./IMG/GT1-03-03-02.png" alt="Phep toan voi bit"></a>
+                    </div>
+
+                    <div class="links">
+                        <a href="https://wiki.vnoi.info/translate/topcoder/fun-with-bits">01 Phép toán với bit</a>
+                    </div>
+
+                    <div class="items">
+                        <a href="https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/"><img src="./IMG/GT2-02.png" alt="Ham voi bit"></a>
+
+                    </div>
+
+                    <div class="links">
+                        <a href="https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/">02 Các hàm với bit</a>
+                    </div>
+                </div>
+
+                <!-- problem -->
+                <h3>Problem</h3>
+                <h4>Hamiltonian Flights</h4>
+                <div class="readmore">
+                    <a href="https://cses.fi/problemset/task/1690">Read more ...</a>
+                </div>
+                <!-- tom tat -->
+                <div class="tomtat">
+                    <h>
+                        Tóm tắt: Cho đồ thị có hướng n đỉnh, đếm số đường đi từ đỉnh 1 đến đỉnh n sao cho đường đi đó thăm mọi đỉnh trên đồ thị, mỗi đỉnh thăm đúng 1 lần. Tính đáp án theo
+                    </h>
+                </div>
+                <!-- phuong huong -->
+                <ul class="accordion">
+                    <li>
+                        <input type="radio" name="accordion" id="first">
+                        <label for="first">Hướng 1: Code Trâu</label>
+                        <div class="content">
+                            <p>
+                                Độ phức tạp: O(n!)<br> Ta sẽ backtrack qua các đường đi bắt đầu từ 1, đi đến đỉnh nào thì lưu đỉnh lại trạng thái của đỉnh đó là đã thămĐộ phức tạp: O(n!) Solution: để tối ưu cách làm trên, ta nhận thấy n
+                                <=2 0 nên mảng vst chỉ cần tối đa 20 phần tử, mỗi phần tử có giá trị 0 hoặc 1, nên ta có thể sử dụng các số có bit tối đa <=2 0 để biểu diễn mảng vst </p>
+                                    <div class="code">
+                                        <a href="https://ideone.com/jZXnYd">Code</a>
+                                    </div>
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <input type="radio" name="accordion" id="second">
+                        <label for="second">Hướng 2: Backtrack tối ưu dữ liệu</label>
+                        <div class="content">
+                            <p>
+                                Độ phức tạp: O(n!)<br>Ta sẽ backtrack qua các đường đi bắt đầu từ 1, đi đến đỉnh nào thì lưu đỉnh lại trạng thái của đỉnh đó là đã thăm<br>Solution: để tối ưu cách làm trên, ta nhận thấy n
+                                <=2 0 nên mảng vst chỉ cần tối đa 20 phần tử, mỗi phần tử có giá trị 0 hoặc 1, nên ta có thể sử dụng các số có bit tối đa <=2 0 để biểu diễn mảng vst </p>
+                                    <div class="code">
+                                        <a href="https://ideone.com/LwTRmv">Code</a>
+                                    </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <input type="radio" name="accordion" id="third">
+                        <label for="third">Hướng 3: Dynamic Programming</label>
+                        <div class="content">
+                            <p>
+                                Độ phức tạp: O(n*2^n)<br> Qua đó, thấy rằng với những bài tập sử dụng mảng bool có kích thước vô cùng nhỏ (
+                                <=2 0), ta có thể sử dụng các biểu diễn nhị phân của số thông thường thay vì phải lưu vào mảng, qua đó giúp các thao tác lưu trữ và tính toán trở nên dễ dàng hơn </p>
+                                    <div class="code">
+                                        <a href=" https://ideone.com/aySecx">Code</a>
+                                    </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- bai tap -->
+    <section class="BT" id="BT">
+        <!-- <h>Bài Tập</h> -->
+        <section class="table__header">
+            <h1>Bài tập</h1>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>SOURCE</th>
+                        <th>PROBLEM NAME</th>
+                        <th>DIFFICULTY</th>
+                        <th>SOLUTION - CODE</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>VNOI</p>
+                        </td>
+                        <td>
+                            <div class="BT__links">
+                                <a href="https://oj.vnoi.info/problem/qbselect">Chọn ô</a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>Dễ</p>
+                        </td>
+                        <td>
+                            <div class="sol__links">
+                                <a href="https://ideone.com/YLQK3I ">Updated</a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>Đã đọc</p>
+                        </td>
+                    </tr>
+                    <!-- 2  -->
+                    <tr>
+                        <td>
+                            <p>CSEC</p>
+                        </td>
+                        <td>
+                            <div class="BT__links">
+                                <a href="https://cses.fi/problemset/task/1653/ ">Elevator Rides</a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>Bình thường</p>
+                        </td>
+                        <td>
+                            <div class="sol__links">
+                                <a href="https://ideone.com/OeRhuW">Updated</a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>Đã đọc</p>
+                        </td>
+                    </tr>
+                    <!-- 3 -->
+                    <tr>
+                        <td>
+                            <p>ATCODER</p>
+                        </td>
+                        <td>
+                            <div class="BT__links">
+                                <a href="https://oj.vnoi.info/problem/atcoder_dp_u">Grouping</a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>Bình thường</p>
+                        </td>
+                        <td>
+                            <div class="sol__links">
+                                <a href="https://ideone.com/hxsp5z">Updated</a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>Đã đọc</p>
+                        </td>
+                    </tr>
+                    <!-- 4 -->
+                    <tr>
+                        <td>
+                            <p>ATCODER</p>
+                        </td>
+                        <td>
+                            <div class="BT__links">
+                                <a href="https://codeforces.com/gym/552900/problem/A">TAXI-trace</a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>Bình thường</p>
+                        </td>
+                        <td>
+                            <div class="sol__links">
+                                <a href="https://ideone.com/hxsp5z">Updated</a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>Đã đọc</p>
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </section>
+    </section>
+
+    <!-- footer  -->
+    <footer id="footer">
+        <div class="row">
+            <div class="col">
+
+                <h1>Liên hệ với chúng tôi</h1>
+                <div class="footer__contact">
+                    <a href="tel: 901234567">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>09295345123</p>
+
+                    </a>
+                    <br>
+                    <a href="mailto:hhpk.web.2009@gmail.com">
+                        <i class="fa-solid fa-envelope"></i>
+                        <p> hhpk.web.2009@gmail.com</p>
+                    </a>
+                </div>
+                <div class="banner__socials">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></i></a>
+                    <a href="#"><i class="fa-brands fa-behance"></i></i></a>
+                </div>
+                <!-- <div class="footer__heading--p">
+                    <p>Xin chân thành cảm ơn các bạn</p>
+                    <p>đã ghé thăm web của chúng tôi</p>
+                    <p1>Chúc các bạn có những trải nghiệm tốt!</p1>
+                </div> -->
+            </div>
+            <div class="col">
+                <h2>Nhóm tác giả</h2>
+                <div class="footer__heading--p2">
+                    <p>Vũ Nguyễn Anh Khoa</p>
+                    <p>Đỗ Ngọc Hữu</p>
+                    <p>Phan Trọng Phúc</p>
+                    <p>Võ Tuyết Hân</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <h3>Menu</h3>
+                <div class="footer__heading--p3">
+                    <p>Home</p>
+                    <p>Lý Thuyết</p>
+                    <p>Bài Tập</p>
+                    <p>Đăng nhập</p>
+                </div>
+            </div>
+
+
+
+        </div>
+        <hr>
+        <p class="copyright">2024 © Bản quyền thuộc về HHPK</p>
+    </footer>
+    <script src="https://kit.fontawesome.com/cf0f31fa2c.js" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
