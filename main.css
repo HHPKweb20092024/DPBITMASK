@@ -1034,12 +1034,12 @@ margin-bottom: -148em;
 #Sol {
     display: flex;
     align-items: center;
-    max-width: 150vh;
-    min-height: 300vh;
+    top: 150px;
     position: relative;
     flex-wrap: wrap;
     margin-left: 30px;
     margin-right: 30px;
+    margin-bottom: 200px;
     transition: var(--smooth);
 }
 .Sol .content h3 {
@@ -1053,8 +1053,8 @@ margin-bottom: -148em;
     color: #91ffed;
     padding: 1rem 0;
     margin-left: -0.1cm;
-    margin-bottom: 0.2cm;
-    line-height: 1;
+    margin-bottom: 0.1cm;
+    line-height: 100px;
     transition: var(--smooth);
 }
 .accordion {
@@ -1107,16 +1107,58 @@ input[type="radio"] {
 .accordion input[type="radio"]:checked+label::before {
     content: '-';
 }
+.accordion .content {
+    color: #555;
+    padding: 0 10px;
+    line-height: 26px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: max-height 0.5s, padding 0.5s;
+}
+
+/* Tùy chỉnh scrollbar */
+.accordion .content::-webkit-scrollbar {
+    width: 10px;
+    /* Độ rộng của scrollbar */
+}
+.accordion .content::-webkit-scrollbar-track {
+    background: #e3edf7;
+    /* Màu nền của track scrollbar */
+    
+    border-radius: 10px;
+    /* Bo tròn góc track scrollbar */
+}
+.accordion .content::-webkit-scrollbar-thumb {
+    background: #100739;
+    /* Màu của thumb scrollbar */
+    
+    border-radius: 10px;
+    visibility: hidden;
+    /* Bo tròn góc thumb scrollbar */
+}
+.accordion .content::-webkit-scrollbar-thumb:hover {
+    visibility: visible;
+    /* Màu của thumb khi hover */
+}
+.accordion .content p a {
+    text-decoration: none;
+    color: #182b96;
+}
+.accordion .content p a:hover {
+    color: #04dfeb;
+}
 @media (min-width: 60rem) {
     #Sol {
-        max-width: 200vh;
-        min-height: 290vh;
+        display: flex;
+        align-items: center;
+        top: 150px;
         position: relative;
         flex-wrap: wrap;
-        background-size: cover;
-        background-position: center;
-        margin-left: 60px;
+        margin-left: 30px;
         margin-right: 30px;
+        margin-bottom: 200px;
+        transition: var(--smooth);
     }
     
     .accordion {
@@ -1130,6 +1172,7 @@ input[type="radio"] {
 .code-frame {
     margin-left: 20px;
     margin-right: 10px;
+    max-height: 1200px;
     width: auto;
     height: auto;
     background-color: #e3edf7;
@@ -1145,31 +1188,39 @@ box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); */
     color: #031549;
 }
 pre {
+    max-height: 1000px;
     background-color: rgb(4, 9, 24) !important;
     padding: 1rem;
     border-radius: 8px;
     overflow: auto;
+    /* Để cho phép cuộn */
+    
+    text-align: right;
 }
+
+/* Tùy chỉnh scrollbar cho phần tử pre */
 pre::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.5rem;
-}
-pre::-webkit-scrollbar-thumb {
-    border-radius: .5rem;
-    background-color: #0004;
-    visibility: hidden;
-}
-pre:hover::-webkit-scrollbar-thumb {
-    visibility: visible;
+    width: 8px;
+    height: 8px;
+    /* Độ rộng của scrollbar */
 }
 pre::-webkit-scrollbar-track {
     background: #282c34;
+    /* Màu nền của track scrollbar */
+    
+    border-radius: 10px;
+    /* Bo tròn góc track scrollbar */
 }
-pre {
-    text-align: right;
-    overflow: auto;
-    background-color: #1e1e1e;
-    border-radius: 8px;
+pre::-webkit-scrollbar-thumb {
+    background: #0004;
+    /* Màu của thumb scrollbar */
+    
+    border-radius: 10px;
+    /* Bo tròn góc thumb scrollbar */
+}
+pre::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+    /* Màu của thumb khi hover */
 }
 code {
     display: inline-block;
