@@ -61,44 +61,21 @@
                     <input type="radio" name="accordion" id="first">
                     <label for="first">Solution</label>
                     <div class="content">
-                        <p> Gọi <span class="math display"><em>c</em><em>o</em><em>s</em><em>t</em>[<em>m</em><em>a</em><em>s</em><em>k</em>]</span> là giá trị nhận được khi các con thỏ mang bit 1 trong <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span>                            chung 1 nhóm. Ta sẽ for hết các cặp {<span class="math display"><em>i</em>, <em>j</em></span>} mà bit thứ i vời bit thứ j được bật với mọi mask.
-                            <p>Độ phức tạp của việc chuẩn bị này là <span class="math display">2<sup><em>n</em></sup> * <em>n</em><sup>2</sup></span>.
-                            </p>
-                            <p/>
-                            <p><br></p>
-                        </p>Gọi
-                        <span class="math display"><em>d</em><em>p</em>[<em>m</em><em>a</em><em>k</em><em>s</em>]</span> với bit thứ
-                        <span class="math display">(<em>i</em> − 1)</span> trong
-                        <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span> nếu bằng 1 nghĩa là con thỏ thứ i đã có nhóm, bằng 0 nếu ngược lại. Với những con thỏ chưa có nhóm, một cách chọn nhóm là 1 tập con của
-                        <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span>, ta sẽ đi qua tất cả cách chọn. Nói cách khác, gọi
-                        <span class="math display"><em>s</em><em>u</em><em>b</em><em>m</em><em>a</em><em>s</em><em>k</em></span> là tập con của
-                        <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span>, ta sẽ duyệt qua hết tất cả
-                        <span class="math display"><em>s</em><em>u</em><em>b</em><em>m</em><em>a</em><em>s</em><em>k</em></span> của
-                        <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span> để chọn nhóm tiếp theo và thêm
-                        <span class="math display"><em>c</em><em>o</em><em>s</em><em>t</em>[<em>s</em><em>u</em><em>b</em><em>m</em><em>a</em><em>s</em><em>k</em>]</span> vào kết quả.
-                        <p>Độ phức tạp:
-                            <span class="math display"><em>O</em>(3<sup><em>n</em></sup>)</span> </p>
+                        <p> Gọi \(cost[mask] \) là giá trị nhận được khi các con thỏ mang bit \(1\) trong \(mask\) chung \(1\) nhóm. Ta sẽ for hết các cặp \(\begin{Bmatrix}i, j\end{Bmatrix}\) mà bit thứ \(i\) vời bit thứ \(j\) được bật với mọi \(mask\). 
+                        <p>Độ phức tạp của việc chuẩn bị này là \(2^n * n^2\)</p>
                         <p><br></p>
-                        <p>
-                            * Tại sao độ phức tạp lại là
-                            <span class="math display"><em>O</em>(3<sup><em>n</em></sup>)</span>?
-                            <p>Với mỗi
-                                <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span> có k bit bật, ta sẽ duyệt qua tất cả các tập con của
-                                <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span>, vậy là duyệt qua tất cả
-                                <span class="math display">2<sup><em>k</em></sup></span> tập con với mỗi k từ 0 đến n.
-                                <p>Do đó, độ phức tạp được tính theo công thức sau:
-                                    <span class="math display">$$\sum_{k=0}^{n} \binom{n}{k} *
-                                2^k$$</span>
-                                </p>
-                                <p>Hay có có thể biến đổi thành:
-
-                                    <span class="math display">$$\sum_{k=0}^{n} \binom{n}{k} * 2^k *
-                                1^{n-k}$$</span> Theo nhị thức newton:
-                                    <span class="math display">$$(x+a)^n = \sum_{k=0}^{n} \binom{n}{k}
-                                x^{n-k}a^k$$</span> </p>
-                                <p>
-                                    < Do đó: <span class="math display">$$\sum_{k=0}^{n} \binom{n}{k} * 2^k * 1^{n-k} = (1+2)^n = 3^n$$</span>
-                                </p>
+                        <p> Gọi \(dp[mask]\) với bit thứ \((i - 1)\) trong \(mask\) nếu bằng \(1\) nghĩa là con thỏ thứ \(i\) đã có nhóm, bằng \(0\) nếu ngược lại. Với những con thỏ chưa có nhóm, một cách chọn nhóm là \(1\) tập con của \(mask\), ta sẽ đi qua tất cả cách chọn. Nói cách khác, gọi \(submask\) là tập con của \(mask\), ta sẽ duyệt qua hết tất cả \(submask\) của \(mask\) để chọn nhóm tiếp theo và thêm \(cost[submask]\) vào kết quả.</p>
+                        <p> Độ phức tạp : \(O(3^n)\)</p>   
+                        <p><br></p>
+            
+                        <p> * Tại sao độ phức tạp lại là \(O(3^n)?\)</p>
+                        <p> Với mỗi \(mask\) có \(k\) bit bật, ta sẽ duyệt qua tất cả các tập con của \(mask\), vậy là duyệt qua tất cả \(2^k\) tập con với mỗi \(k\) từ \(0\) đến \(n\). Do đó, độ phức tạp được tính theo công thức sau: \[\sum_{k=0}^{n}\binom{n}{k}*2^k\] </p>
+                        <p> Hay có có thể biến đổi thành: \[\sum_{k=0}^{n}\binom{n}{k}*2^k*1^{n-k}\]</p>
+                        <p> Theo nhị thức newton : 	 \[(x+a)^n = \sum_{k=0}^{n}\binom{n}{k}x^{n-k}a^k\] </p>
+                        <p> Do đó :  \[\sum_{k=0}^{n} \binom{n}{k}*2^k*1^{n-k} = (1+2)^n = 3^n\]</p>
+                            
+                             
+                            
             </ul>
             </li>
 
@@ -107,73 +84,73 @@
                     <h1>Code</h1>
                 </section>
                 <pre><code class="language-javascript">
-                    #include <bits/stdc++.h>
-                    #define ll long long
-                    #define pii pair <int , int>
-                    #define fi first
-                    #define se second
-                    #define pb push_back
-                    #define BIT(x , i) (((x) >> (i)) & 1)
-                    #define flip(x , i) ((x) ^ (1 << (i)))
-                    #define mem(a , b) memset((a) , (b) , sizeof(a))
-                    #define all(c) (c).begin() , (c).end()
-                    #define nl cout << '\n';
-                    #define file "test"
-                    
-                    using namespace std;
-                    
-                    const int N = 3e5 + 5;
-                    const ll oo = 1e18 + 7;
-                    const int mod = 1e9 + 7;
-                    const int base = 31;
-                    const int LOG = 20;
-                    
-                    int n , a[30][30];
-                    ll cost[N] , dp[N];
-                    
-                    void prepare(){
-                        for(int mask = 0 ; mask < (1 << n) ; mask++){
-                            for(int i = 1 ; i < n ; i++){
-                                for(int j = i + 1 ; j <= n ; j++){
-                                    if(BIT(mask , i - 1) && BIT(mask , j - 1)) cost[mask] += a[i][j];
-                                }
-                            }
-                        }
-                    }
-                    
-                    ll sol(int mask){
-                        ll res = -oo;
-                    
-                        if(!mask) return 0;
-                    
-                        if(dp[mask] != -1) return dp[mask];
-                    
-                        for(int nxt_mask = mask ; nxt_mask > 0 ; nxt_mask = (nxt_mask - 1) & mask){
-                            res = max(res , sol(mask ^ nxt_mask) + cost[nxt_mask]);
-                        }
-                    
-                        return dp[mask] = res;
-                    }
-                    
-                    void inp()
-                    {
-                        cin >> n;
-                        for(int i = 1 ; i <= n ; i++){
-                            for(int j = 1 ; j <= n ; j++){
-                                cin >> a[i][j];
-                            }
-                        }
-                    }
-                    
-                    int main(){
-                        cin.tie(0)->sync_with_stdio(0);
-                        inp();
-                    
-                        prepare();
-                    
-                        mem(dp , -1);
-                        cout << sol((1 << n) - 1);
-                    }
+#include &lt;bits/stdc++.h&gt;
+#define ll long long
+#define pii pair <int , int>
+#define fi first
+#define se second
+#define pb push_back
+#define BIT(x , i) (((x) >> (i)) & 1)
+#define flip(x , i) ((x) ^ (1 << (i)))
+#define mem(a , b) memset((a) , (b) , sizeof(a))
+#define all(c) (c).begin() , (c).end()
+#define nl cout << '\n';
+#define file "test"
+
+using namespace std;
+
+const int N = 3e5 + 5;
+const ll oo = 1e18 + 7;
+const int mod = 1e9 + 7;
+const int base = 31;
+const int LOG = 20;
+
+int n , a[30][30];
+ll cost[N] , dp[N];
+
+void prepare(){
+    for(int mask = 0 ; mask < (1 << n) ; mask++){
+        for(int i = 1 ; i < n ; i++){
+            for(int j = i + 1 ; j <= n ; j++){
+                if(BIT(mask , i - 1) && BIT(mask , j - 1)) cost[mask] += a[i][j];
+            }
+        }
+    }
+}
+
+ll sol(int mask){
+    ll res = -oo;
+
+    if(!mask) return 0;
+
+    if(dp[mask] != -1) return dp[mask];
+
+    for(int nxt_mask = mask ; nxt_mask > 0 ; nxt_mask = (nxt_mask - 1) & mask){
+        res = max(res , sol(mask ^ nxt_mask) + cost[nxt_mask]);
+    }
+
+    return dp[mask] = res;
+}
+
+void inp()
+{
+    cin >> n;
+    for(int i = 1 ; i <= n ; i++){
+        for(int j = 1 ; j <= n ; j++){
+            cin >> a[i][j];
+        }
+    }
+}
+
+int main(){
+    cin.tie(0)->sync_with_stdio(0);
+    inp();
+
+    prepare();
+
+    mem(dp , -1);
+    cout << sol((1 << n) - 1);
+}
                     
                     
                     </code></pre>
