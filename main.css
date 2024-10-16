@@ -125,7 +125,34 @@ width: 15px;
         padding: 20px 0;
         /* khoang cach hang 20px  */
     }
-    /* logo  */
+    /* dec menu  */
+    
+    @media (min-width: 62em) {
+        .menu_img img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -10px;
+        }
+        .menu1_img img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: -10px;
+        }
+        .hhpk__logo img {
+            position: sticky;
+            transform: translateY(400%);
+            transform: translateX(-424%);
+            width: 10vh;
+            height: 10vh;
+            object-fit: cover;
+            margin-top: -10px;
+        }
+    }
+    
+    */
+    /* home */
     
     .hhpk__logo img {
         width: 10vh;
@@ -133,20 +160,51 @@ width: 15px;
         object-fit: cover;
         margin-left: 30px;
         /* giup hinh luc nao cung cover trong kich thuoc minh decide  */
+        /* giup hinh luc nao cung cover trong kich thuoc minh decide  */
     }
-    /* home */
     
     .home {
         display: flex;
         align-items: center;
-        max-width: 90vh;
+        max-width: 10px;
+        /* max-width: 90vh; */
         min-height: 80vh;
         position: relative;
         flex-wrap: wrap;
+        top: -100px;
         background-size: cover;
         background-position: center;
         margin-left: 30px;
         margin-right: 30px;
+    }
+    
+    @media (min-width: 82em) {
+        .home_img img {
+            transform: translateX(85%) translateY(80%) scale(3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -10;
+            max-width: 100%;
+            /* Đảm bảo hình ảnh không vượt quá chiều rộng */
+            height: auto;
+            overflow: hidden;
+            /* Giữ tỷ lệ chiều cao */
+        }
+        .home1_img img {
+            position: absolute;
+            height: auto;
+            /* Giữ chiều cao tự động */
+            width: auto;
+            /* Giữ chiều rộng tự động */
+            transform: translateX(46%) translateY(90%) scale(2);
+            top: 0;
+            right: 0;
+            z-index: -10;
+            max-width: 100%;
+            overflow: hidden;
+            /* Đảm bảo hình ảnh không vượt quá chiều rộng */
+        }
     }
     
     .home.content {
