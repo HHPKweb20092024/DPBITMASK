@@ -62,11 +62,8 @@
                     <label for="first">Solution</label>
                     <div class="content">
                         <p>
-                            Ta sẽ gọi <span class="math display"><em>d</em><em>p</em>[<em>i</em>][<em>m</em><em>a</em><em>s</em><em>k</em>]</span> là tại cột i lấy những ô tại hàng có vị trí <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span>                            bằng 1 và không có 2 bit 1 nào kề nhau. Từ đó ta có được công thức: </p>
-                        <p1><span class="math display">$$dp[i][mask] = \sum_{MASK}^{}
-                                dp[i-1][MASK]$$</span></p1>
-                        <p>với <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span> là số thỏa điều kiện là không bit 1 nào kề nhau và vị trí các bit 1 trong <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span>                            không trùng với vị trí bit 1 trong <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span> .
-                            <p>Độ phức tạp: <span class="math display"><em>O</em>(<em>n</em> * 16<sup>2</sup>)</span></p>
+                            Ta sẽ gọi \(dp[i][mask]\)là tại cột \(i\) lấy những ô tại hàng có vị trí \(mask\) bằng \(1\) và không có \(2\) bit \(1\) nào kề nhau. Từ đó ta có được công thức: \[dp[i][mask] = \sum_{MASK}^{} dp[i-1][MASK]\] với \(MASK\) là số thỏa điều kiện là không bit \(1\) nào kề nhau và vị trí các bit \(1\) trong \(MASK\) không trùng với vị trí bit \(1\) trong \(mask\).
+                            <p>Độ phức tạp: \(O(n*16^2)\)
                     </div>
             </ul>
             </li>
@@ -76,54 +73,54 @@
                     <h1>Code</h1>
                 </section>
                 <pre><code class="language-javascript">
-                    #include <bits/stdc++.h>
-                    using namespace std;
-                    
-                    const int N = 1e4 + 3;
-                    
-                    int n;
-                    int a[4][N], dp[N][16];
-                                //{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
-                    bool ok[16] = {1, 1, 1, 0, 1, 1, 0, 0, 1, 1,  1,  0,  0,  0,  0,  0};
-                    
-                    int get(int i, int x)
-                    {
-                        int sum = 0;
-                        for (int j = 0; j < 4; j++)
-                            if ((x >> j) & 1) sum += a[j][i];
-                        return sum;
-                    }
-                    
-                    int main()
-                    {
-                        ios_base::sync_with_stdio(0); cin.tie(); cout.tie();
-                    
-                        cin >> n;
-                        int ans = -1e9;
-                        for (int j = 1; j <= n; j++)
-                            for (int i = 0; i < 4; i++)
-                            {
-                                cin >> a[i][j];
-                                ans = max(ans, a[i][j]);
-                            }
-                        if (ans <= 0)
-                            return cout << ans, 0;
-                    
-                        for (int i = 1; i <= n; i++)
-                            for (int x = 0; x < 16; x++)
-                                if (ok[x])
-                                {
-                                    int sum = get(i, x);
-                                    dp[i][x] = -1e9;
-                                    for (int z = 0; z < 16; z++)
-                                        if (ok[z] && ((x & z) == 0))
-                                            dp[i][x] = max(dp[i][x], dp[i-1][z] + sum);
-                                }
-                        for (int x = 0; x <= 15; x++)
-                            if (ok[x]) ans = max(ans, dp[n][x]);
-                        cout << ans;
-                        return 0;
-                    }
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+const int N = 1e4 + 3;
+
+int n;
+int a[4][N], dp[N][16];
+        //{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+bool ok[16] = {1, 1, 1, 0, 1, 1, 0, 0, 1, 1,  1,  0,  0,  0,  0,  0};
+
+int get(int i, int x)
+{
+int sum = 0;
+for (int j = 0; j < 4; j++)
+    if ((x >> j) & 1) sum += a[j][i];
+return sum;
+}
+
+int main()
+{
+ios_base::sync_with_stdio(0); cin.tie(); cout.tie();
+
+cin >> n;
+int ans = -1e9;
+for (int j = 1; j <= n; j++)
+    for (int i = 0; i < 4; i++)
+    {
+        cin >> a[i][j];
+        ans = max(ans, a[i][j]);
+    }
+if (ans <= 0)
+    return cout << ans, 0;
+
+for (int i = 1; i <= n; i++)
+    for (int x = 0; x < 16; x++)
+        if (ok[x])
+        {
+            int sum = get(i, x);
+            dp[i][x] = -1e9;
+            for (int z = 0; z < 16; z++)
+                if (ok[z] && ((x & z) == 0))
+                    dp[i][x] = max(dp[i][x], dp[i-1][z] + sum);
+        }
+for (int x = 0; x <= 15; x++)
+    if (ok[x]) ans = max(ans, dp[n][x]);
+cout << ans;
+return 0;
+}
                     
                     </code></pre>
             </section>
