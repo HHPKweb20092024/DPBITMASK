@@ -15,6 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
     <title>Quy hoạch động Bitmask</title>
 </head>
 
@@ -62,12 +63,11 @@
                     <label for="first">Solution</label>
                     <div class="content">
                         <p>
-                            Gọi<span class="math display">$$pair&lt;int, int&gt; dp[mask] =\begin{Bmatrix} a, b \end{Bmatrix}$$</span>với a là số lượt đã dùng, b là số chỗ trống đã dùng.
-                            <p>
-                                Dễ thấy khi lấy min, ta sẽ ưu tiên min của a hơn vì <span class="math display">1 * <em>a</em> = <em>x</em> * <em>b</em></span>. Với mỗi bit thứ <span class="math display">(<em>i</em> − 1)</span> đang bật trong <span class="math display"><em>m</em><em>a</em><em>s</em><em>k</em></span>,
-                                tức là người đó chưa đi thang máy, nếu chọn người đó vào thang máy, ta sẽ tính với cách xếp tối ưu cho những người còn lại khác người thứ i mà chưa vào thang máy có dư chỗ cho người i ko, nếu có thì xếp người i vào, nếu
-                                ko thì tăng số chuyến đi lên 1</p>
-                            <p>Độ phức tạp: <span class="math display"><em>O</em>(<em>n</em> * 2<sup><em>n</em></sup>)</span></p>
+                            Gọi pair&lt;int, int&gt; \( dp[mask] = {a, b} \) với \(a\) là số lượt đã dùng, \(b\) là số chỗ trống đã dùng. Dễ thấy khi lấy min, ta sẽ ưu tiên min của \(a\) hơn vì \(1.a = x.b\). Với mỗi bit thứ \((i - 1)\) đang bật trong \(mask\) tức là người đó chưa đi thang máy, nếu chọn người đó vào thang máy, ta sẽ tính với cách xếp tối ưu cho những người còn lại khác người thứ \(i\) mà chưa vào thang máy có dư chỗ cho người \(i\) ko, nếu có thì xếp người \(i\) vào, nếu không thì tăng số chuyến đi lên 1.
+                        </p>
+                        <p>
+                            Độ phức tạp : \(O(n * 2^n)\).
+                        </p>
                     </div>
             </ul>
             </li>
@@ -77,103 +77,103 @@
                     <h1>Code</h1>
                 </section>
                 <pre><code class="language-javascript">
-                    #include <bits/stdc++.h>
-                    #define fi first
-                    #define se second
-                    #define ull unsigned long long
-                    #define ll long long
-                    #define pii pair<int, int>
-                    #define mp make_pair
-                    #define pb push_back
-                    #define nl cout << "\n";
-                    #define mem(a, b) memset((a), (b), sizeof((a)))
-                    #define all(c) (c).begin(), (c).end()
-                    #define file "test"
-                    using namespace std;
-                     
-                    const int oo = 1e9 + 7;
-                    const int mod = 1e9 + 7;
-                    const int N = 2e5 + 5;
-                    int n, x, w[N];
-                    pii dp[1100000];
-                    
-                    int getbit(int n, int k)
-                    {
-                        // kiểm tra bit thứ k của n bật hay tắt
-                        int s = (n & (1 << k));
-                        return (s == (1 << k));
-                    }
-                    
-                    int turn_off(int n, int k)
-                    {
-                        // lật bit thứ k của n
-                        int s = n ^ (1 << k);
-                        return s;
-                    }
-                    
-                    pii sol(int mask)
-                    {
-                        if(!mask) return {1, 0};
-                    
-                        if (dp[mask].fi != -1)
-                            return dp[mask];
-                            
-                        // đặt res bằng giá trị lớn nhất
-                    
-                        pii res = {n + 5, x};
-                    
-                        for (int i = 1; i <= n; i++)
-                        {
-                            if (getbit(mask, i - 1))
-                            {
-                                // val là cách chọn tối ưu cho những người còn lại chưa đi thang máy khác i
-                                pii val = sol(turn_off(mask, i - 1));
-                                if (x - val.se < w[i])
-                                {
-                                    // nếu hết chỗ thì tăng số chuyến đi lên 1
-                                    val.se = w[i];
-                                    val.fi++;
-                                }
-                                else{
-                                    // nếu còn đủ chỗ thì cho vào
-                                    val.se += w[i];
-                                }
-                    
-                                res = min(res, val);
-                            }
-                        }
-                    
-                        return dp[mask] = res;
-                    }
-                    
-                    void inp()
-                    {
-                        cin >> n >> x;
-                        for (int i = 1; i <= n; i++)
-                        {
-                            cin >> w[i];
-                        }
-                    }
-                     
-                    void solve()
-                    {
-                        // memset cho mảng dp
-                        for (int i = 0; i < (1 << n); i++)
-                            dp[i] = {-1, -1};
-                    
-                        // ((1 << n) - 1) là trạng thái mask với n bit đầu tiên bật
-                    
-                        cout << sol((1 << n) - 1).fi;
-                    }
-                    
-                    int main()
-                    {
-                        ios_base::sync_with_stdio(false);
-                        cin.tie(0);
-                        inp();
-                        solve();
-                    }
-                    
+#include &lt;bits/stdc++.h&gt;
+#define fi first
+#define se second
+#define ull unsigned long long
+#define ll long long
+#define pii pair<int, int>
+#define mp make_pair
+#define pb push_back
+#define nl cout << "\n";
+#define mem(a, b) memset((a), (b), sizeof((a)))
+#define all(c) (c).begin(), (c).end()
+#define file "test"
+using namespace std;
+    
+const int oo = 1e9 + 7;
+const int mod = 1e9 + 7;
+const int N = 2e5 + 5;
+int n, x, w[N];
+pii dp[1100000];
+
+int getbit(int n, int k)
+{
+    // kiểm tra bit thứ k của n bật hay tắt
+    int s = (n & (1 << k));
+    return (s == (1 << k));
+}
+
+int turn_off(int n, int k)
+{
+    // lật bit thứ k của n
+    int s = n ^ (1 << k);
+    return s;
+}
+
+pii sol(int mask)
+{
+    if(!mask) return {1, 0};
+
+    if (dp[mask].fi != -1)
+        return dp[mask];
+        
+    // đặt res bằng giá trị lớn nhất
+
+    pii res = {n + 5, x};
+
+    for (int i = 1; i <= n; i++)
+    {
+        if (getbit(mask, i - 1))
+        {
+            // val là cách chọn tối ưu cho những người còn lại chưa đi thang máy khác i
+            pii val = sol(turn_off(mask, i - 1));
+            if (x - val.se < w[i])
+            {
+                // nếu hết chỗ thì tăng số chuyến đi lên 1
+                val.se = w[i];
+                val.fi++;
+            }
+            else{
+                // nếu còn đủ chỗ thì cho vào
+                val.se += w[i];
+            }
+
+            res = min(res, val);
+        }
+    }
+
+    return dp[mask] = res;
+}
+
+void inp()
+{
+    cin >> n >> x;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> w[i];
+    }
+}
+    
+void solve()
+{
+    // memset cho mảng dp
+    for (int i = 0; i < (1 << n); i++)
+        dp[i] = {-1, -1};
+
+    // ((1 << n) - 1) là trạng thái mask với n bit đầu tiên bật
+
+    cout << sol((1 << n) - 1).fi;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    inp();
+    solve();
+}
+                   
                     </code></pre>
             </section>
 
