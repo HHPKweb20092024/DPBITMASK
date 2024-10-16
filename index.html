@@ -7,6 +7,7 @@
     <!-- sử dụng công nghệ mới  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap" rel="stylesheet">
     <!-- main css  -->
@@ -101,18 +102,17 @@
                 <!-- tom tat -->
                 <div class="tomtat">
                     <h>
-                        Tóm tắt: Cho đồ thị có hướng n đỉnh, đếm số đường đi từ đỉnh 1 đến đỉnh n sao cho đường đi đó thăm mọi đỉnh trên đồ thị, mỗi đỉnh thăm đúng 1 lần. Tính đáp án theo
+                        Tóm tắt: Cho đồ thị có hướng \( n \) đỉnh, đếm số đường đi từ đỉnh \( 1 \) đến đỉnh \( n \) sao cho đường đi đó thăm mọi đỉnh trên đồ thị, mỗi đỉnh thăm đúng \(1\) lần. Tính đáp án theo
                     </h>
                 </div>
                 <!-- phuong huong -->
                 <ul class="accordion">
                     <li>
                         <input type="radio" name="accordion" id="first">
-                        <label for="first">Hướng 1: Code Trâu</label>
+                        <label for="first">Hướng 1: Code Trâu</label> 
                         <div class="content">
                             <p>
-                                Độ phức tạp: O(n!)<br> Ta sẽ backtrack qua các đường đi bắt đầu từ 1, đi đến đỉnh nào thì lưu đỉnh lại trạng thái của đỉnh đó là đã thăm<br> Solution: để tối ưu cách làm trên, ta nhận thấy n
-                                <=2 0 nên mảng vst chỉ cần tối đa 20 phần tử, mỗi phần tử có giá trị 0 hoặc 1, nên ta có thể sử dụng các số có bit tối đa <=2 0 để biểu diễn mảng vst </p>
+                                Độ phức tạp: \( O(n!) \) <br> Ta sẽ backtrack qua các đường đi bắt đầu từ \(  1\), đi đến đỉnh nào thì lưu đỉnh lại trạng thái của đỉnh đó là đã thăm<br> Solution: để tối ưu cách làm trên, ta nhận thấy \(  n \leq 20\) nên mảng \(  [vst]\) chỉ cần tối đa \(20\) phần tử, mỗi phần tử có giá trị \(0\) hoặc \(1\), nên ta có thể sử dụng các số có bit tối đa \(\leq20\) để biểu diễn mảng \([vst]\) </p>
                                     <div class="code">
                                         <a href="https://ideone.com/jZXnYd">Code</a>
                                     </div>
@@ -125,8 +125,7 @@
                         <label for="second">Hướng 2: Backtrack tối ưu dữ liệu</label>
                         <div class="content">
                             <p>
-                                Độ phức tạp: O(n!)<br>Ta sẽ backtrack qua các đường đi bắt đầu từ 1, đi đến đỉnh nào thì lưu đỉnh lại trạng thái của đỉnh đó là đã thăm<br>Solution: để tối ưu cách làm trên, ta nhận thấy n
-                                <=2 0 nên mảng vst chỉ cần tối đa 20 phần tử, mỗi phần tử có giá trị 0 hoặc 1, nên ta có thể sử dụng các số có bit tối đa <=2 0 để biểu diễn mảng vst </p>
+                                Lúc này, ta thấy rằng \(i\) sẽ nhận các giá trị từ \(1 \rightarrow 20\), còn \(vst\) sẽ nhận giá trị từ \(1 \rightarrow 2^{20}\), do đó số lượng trạng thái của hàm \(btr(i, vst)\) là \(20 * 2^{20}\), ta thấy số lượng trạng là một con số chấp nhận được Code trên chạy lâu là vì có các trạng thái \(i\), \(vst\) được gọi lại và tính lại nhiều lần. Vì vậy với mỗi trạng \(btr(i, vst)\) ta sẽ lưu kết quả của hàm này vào mảng \(dp[i][vst]\) để khi \(btr(i, vst)\) được gọi lại từ lần thứ \(2\) trở đi thì sẽ trả về kết quả trong \(O(1)\) </p>
                                     <div class="code">
                                         <a href="https://ideone.com/LwTRmv">Code</a>
                                     </div>
@@ -138,8 +137,7 @@
                         <label for="third">Hướng 3: Dynamic Programming</label>
                         <div class="content">
                             <p>
-                                Độ phức tạp: O(n*2^n)<br> Qua đó, thấy rằng với những bài tập sử dụng mảng bool có kích thước vô cùng nhỏ (
-                                <=2 0), ta có thể sử dụng các biểu diễn nhị phân của số thông thường thay vì phải lưu vào mảng, qua đó giúp các thao tác lưu trữ và tính toán trở nên dễ dàng hơn </p>
+                                Độ phức tạp: \( O(n*2^n) \) <br> Qua đó, thấy rằng với những bài tập sử dụng mảng bool có kích thước vô cùng nhỏ (\(\leq20\)), ta có thể sử dụng các biểu diễn nhị phân của số thông thường thay vì phải lưu vào mảng, qua đó giúp các thao tác lưu trữ và tính toán trở nên dễ dàng hơn </p>
                                     <div class="code">
                                         <a href=" https://ideone.com/aySecx">Code</a>
                                     </div>
