@@ -125,7 +125,7 @@
                         <label for="second">Hướng 2: Backtrack tối ưu dữ liệu</label>
                         <div class="content">
                             <p>
-                                Lúc này, ta thấy rằng \(i\) sẽ nhận các giá trị từ \(1 \rightarrow 20\), còn \(vst\) sẽ nhận giá trị từ \(1 \rightarrow 2^{20}\), do đó số lượng trạng thái của hàm \(btr(i, vst)\) là \(20 * 2^{20}\), ta thấy số lượng trạng là một con số chấp nhận được Code trên chạy lâu là vì có các trạng thái \(i\), \(vst\) được gọi lại và tính lại nhiều lần. Vì vậy với mỗi trạng \(btr(i, vst)\) ta sẽ lưu kết quả của hàm này vào mảng \(dp[i][vst]\) để khi \(btr(i, vst)\) được gọi lại từ lần thứ \(2\) trở đi thì sẽ trả về kết quả trong \(O(1)\) </p>
+                                Lúc này, ta thấy rằng \(i\) sẽ nhận các giá trị từ \(1 \rightarrow 20\), còn \(vst\) sẽ nhận giá trị từ \(1 \rightarrow 2^{20}\), do đó số lượng trạng thái của hàm \(btr(i, vst)\) là \(20 * 2^{20}\), ta thấy số lượng trạng là một con số chấp nhận được Code trên chạy lâu là vì có các trạng thái \(\begin{Bmatrix}i, vst\end{Bmatrix}\) được gọi lại và tính lại nhiều lần. Vì vậy với mỗi trạng \(btr(i, vst)\) ta sẽ lưu kết quả của hàm này vào mảng \(dp[i][vst]\) để khi \(btr(i, vst)\) được gọi lại từ lần thứ \(2\) trở đi thì sẽ trả về kết quả trong \(O(1)\) </p>
                                     <div class="code">
                                         <a href="https://ideone.com/LwTRmv">Code</a>
                                     </div>
