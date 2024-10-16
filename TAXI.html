@@ -62,9 +62,12 @@
                     <label for="first">Solution</label>
                     <div class="content">
                         <p>
-                            Vì đề bài chỉ có \(2 * n\) \((n \le 10) \) đỉnh và \(1\) đỉnh có thể được đi qua đi lại nhiều lần nên khi muốn đi từ \(u\) đến \(v\) thì ta sẽ đi theo đường đi ngắn nhất, do đó ta dùng floyd để có thể tạo ra mảng \(d[u][v]\) lưu đường đi ngắn nhất từ \(u\) đến \(v\)
-                            (xem thêm về floyd ở đây:<a href="https://wiki.vnoi.info/algo/graph-theory/shortest-path">VNOI - graph-theory</a>). Gọi \(dp[i][mask]\) là cách đi ngắn nhất sao cho với mỗi bit thứ \(i (0 \le i < n) \) nếu bằng \(1\) thì ta đã đi qua đỉnh thứ \(i + 1\) và ngược lại với \(0\), với mỗi bit thứ \(i\) \((n \le i < n * 2)\) nếu bằng \(1\) thì ta đã giao hàng cho đỉnh thứ \(i + 1\) và ngược lại với \(0\), vậy nên bit \(i\) phải được bật trước bit \(i + n\) \( (0 \le i < n) \). Ta sẽ xây dựng hàm quy hoạch động như bình thường (khá dễ nên bỏ qua). Ở phần truy vết, thì ta gọi \(par[i][mask]\) là đỉnh \(j\) sao cho ở khi ở trạng thái \({i, mask}\) thì chọn đỉnh \(j\) sẽ cho ta đường đi tối ưu nhất, quá trình xây dựng mảng \(par[i][mask]\) được thực hiện cùng với việc xây dựng mảng \([dp]\). Ta sẽ đi từ trạng thái \({i, mask}\) đầu tiên (hoặc cuối cùng tuỳ thuộc vào cách dp) và dùng \(par[i][mask]\) để biết được trạng thái tiếp theo là gì. Chi tiết trong phần code.
-
+                            Vì đề bài chỉ có \(2 * n\) \((n \le 10) \) đỉnh và \(1\) đỉnh có thể được đi qua đi lại nhiều lần nên khi muốn đi từ \(u\) đến \(v\) thì ta sẽ đi theo đường đi ngắn nhất, do đó ta dùng floyd để có thể tạo ra mảng \(d[u][v]\) lưu đường đi ngắn nhất từ \(u \rightarrow v\)</p>
+                        <p> (Xem thêm về floyd ở đây:<a href="https://wiki.vnoi.info/algo/graph-theory/shortest-path">VNOI - graph-theory</a>).</p>
+                        <p><br></p> 
+                        <p> Gọi \(dp[i][mask]\) là cách đi ngắn nhất sao cho với mỗi bit thứ \(i\) (\(0 \le 1 \le n\)) nếu bằng \(1\) thì ta đã đi qua đỉnh thứ \(i + 1\) và ngược lại với \(0\), với mỗi bit thứ \(i\) \((n \le i \le n * 2)\) nếu bằng \(1\) thì ta đã giao hàng cho đỉnh thứ \(i + 1\) và ngược lại với \(0\), vậy nên bit \(i\) phải được bật trước bit \(i + n\) \((0 \le i \le n) \). Ta sẽ xây dựng hàm quy hoạch động như bình thường (khá dễ nên bỏ qua).</p>
+                        <p><br></p>
+                        <p> Ở phần truy vết, thì ta gọi \(par[i][mask]\) là đỉnh \(j\) sao cho ở khi ở trạng thái \(\begin{Bmatrix}i, mask\end{Bmatrix}\) thì chọn đỉnh \(j\) sẽ cho ta đường đi tối ưu nhất, quá trình xây dựng mảng \(par[i][mask]\) được thực hiện cùng với việc xây dựng mảng \([dp]\). Ta sẽ đi từ trạng thái \(\begin{Bmatrix}i, mask\end{Bmatrix}\) đầu tiên (hoặc cuối cùng tuỳ thuộc vào cách dp) và dùng \(par[i][mask]\) để biết được trạng thái tiếp theo là gì (chi tiết trong phần code).</p>
                         </p>
                             <p>Độ phức tạp:  \(O(2^n * n^2)\)</p>
                     </div>
